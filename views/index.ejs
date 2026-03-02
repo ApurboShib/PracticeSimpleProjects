@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/stylesheets/stylr.css">
+    <link rel="stylesheet" href="/stylesheets/stylr.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -21,7 +21,7 @@
                         Create Task</h1>
                     <p class="text-zinc-400 mt-3 text-sm font-medium">Add a new task to your workspace</p>
                 </div>
-
+                <!-- here is the form data to create the task and send it to the server to save it in the database. -->
                 <form action="/create" method="POST" class="space-y-6">
                     <div class="space-y-2 text-left">
                         <label for="title" class="block text-sm font-semibold text-zinc-300 ml-1">Task Title</label>
@@ -74,31 +74,35 @@
                                     <%= task.filename %>
                                 </span>
                             </div>
+                            <!-- FIX: use filename in route so backend can load exact file -->
+                            <a href="/files/<%= encodeURIComponent(task.filename) %>"
+                                class="text-indigo-400 text-sm font-semibold hover:underline mt-3 inline-block">
+                                Read More
+                            </a>
                         </div>
-                        <% }) %>
+                    <% }) %>
 
-                            <!-- show that the task is not created yet -->
-                            <% } else { %>
-                                <div
-                                    class="col-span-full flex flex-col items-center justify-center py-16 bg-zinc-800/20 rounded-3xl border border-white/5 border-dashed">
-                                    <div
-                                        class="w-16 h-16 rounded-full bg-zinc-800/80 flex items-center justify-center mb-4 border border-white/5 shadow-inner">
-                                        <svg class="w-8 h-8 text-zinc-500" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <p class="text-zinc-300 font-semibold text-lg">No tasks yet</p>
-                                    <p class="text-zinc-500 text-sm mt-1">Create your first task above</p>
-                                </div>
-                                <% } %>
+                <!-- show that the task is not created yet -->
+                <% } else { %>
+                    <div
+                        class="col-span-full flex flex-col items-center justify-center py-16 bg-zinc-800/20 rounded-3xl border border-white/5 border-dashed">
+                        <div
+                            class="w-16 h-16 rounded-full bg-zinc-800/80 flex items-center justify-center mb-4 border border-white/5 shadow-inner">
+                            <svg class="w-8 h-8 text-zinc-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                                </path>
+                            </svg>
+                        </div>
+                        <p class="text-zinc-300 font-semibold text-lg">No tasks yet</p>
+                        <p class="text-zinc-500 text-sm mt-1">Create your first task above</p>
+                    </div>
+                <% } %>
             </div>
         </div>
-    </div>
 </body>
 
-<script src="/public/javascripts/script.js"></script>
+<script src="/javascripts/script.js"></script>
 
 </html>

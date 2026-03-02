@@ -45,6 +45,22 @@ app.get("/", (req, res) => {
     });
 });
 
+// handle the read more features...
+app.get("/files/:filename", (req, res) => {
+    // read the selected file and pass its content to the show view.
+    fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
+        if (err) {
+            return res.status(404).send("File not found");
+        }
+
+        res.render("show", {
+            title: req.params.filename.replace(/\.txt$/i, ""),
+            details: filedata,
+            filename: req.params.filename
+        });
+    })
+})
+
 app.post("/create", (req, res) => {
     console.log(req.body);
     const title = req.body.name.trim().replace(/[^a-z0-9]/gi, '_');
