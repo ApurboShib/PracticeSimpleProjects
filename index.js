@@ -46,9 +46,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create", (req, res) => {
+    console.log(req.body);
     const title = req.body.name.trim().replace(/[^a-z0-9]/gi, '_');
     if (!title) return res.redirect("/");
-
+    // create the file where the data will store.
     fs.writeFile(`./files/${title}.txt`, req.body.details, function (err) {
         res.redirect("/");
     });
