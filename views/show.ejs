@@ -10,9 +10,11 @@
 </head>
 
 <body>
+    <!-- Detail page wrapper for a single task -->
     <div
         class="min-h-screen bg-zinc-900 text-white px-6 py-16 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800 via-zinc-900 to-black">
         <div class="max-w-3xl mx-auto bg-zinc-800/40 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+            <!-- Filename and clean title passed from /files/:filename -->
             <p class="text-zinc-400 text-sm mb-2"><%= filename %></p>
             <h1 class="text-3xl font-bold text-indigo-300 mb-6 break-words"><%= title %></h1>
 
@@ -21,6 +23,7 @@
 
             <a href="/"
                 class="inline-block mt-8 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition-colors font-semibold">
+                <!-- Navigate back to dashboard with all tasks -->
                 Back to Tasks
             </a>
         </div>

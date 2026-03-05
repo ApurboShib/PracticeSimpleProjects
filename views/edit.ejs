@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/stylr.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <!-- Edit page wrapper for updating an existing task file -->
+    <div
+        class="min-h-screen bg-zinc-900 text-white px-6 py-16 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800 via-zinc-900 to-black">
+        <div class="max-w-3xl mx-auto bg-zinc-800/40 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+            <!-- Current file identity shown for user clarity -->
+            <p class="text-zinc-400 text-sm mb-2"><%= filename %></p>
+            <h1 class="text-3xl font-bold text-indigo-300 mb-6 break-words">Edit: <%= title %></h1>
+
+            <!-- Sends updated task details to backend update route -->
+            <form action="/edit/<%= encodeURIComponent(filename) %>" method="POST" class="space-y-4">
+                <div class="space-y-2 text-left">
+                    <label for="details" class="block text-sm font-semibold text-zinc-300 ml-1">Task Details</label>
+                    <!-- Pre-filled with existing content from file -->
+                    <textarea name="details" id="details" rows="10"
+                        class="w-full px-5 py-4 bg-zinc-900/50 border border-white/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all duration-300 text-white placeholder-zinc-600 resize-y shadow-inner"><%= details %></textarea>
+                </div>
+
+                <div class="flex gap-3">
+                    <button type="submit"
+                        class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition-colors font-semibold">
+                        Save Changes
+                    </button>
+                    <!-- Return to details view without saving edits -->
+                    <a href="/files/<%= encodeURIComponent(filename) %>"
+                        class="inline-block px-5 py-3 rounded-xl bg-zinc-700 hover:bg-zinc-600 transition-colors font-semibold">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
